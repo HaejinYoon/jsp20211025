@@ -18,7 +18,7 @@
 
 		
 <%
-pageContext.setAttribute(name, value)
+
 %>
 </body>
 </html>
