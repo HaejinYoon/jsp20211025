@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%request.setCharacterEncoding("utf-8");%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/icon/css/all.css">
+
+<title>30 SET Tag</title>
+</head>
+<body>
+<%
+pageContext.setAttribute("attr1", "val1");
+request.setAttribute("attr2", "val2");
+session.setAttribute("attr3", "val3");
+application.setAttribute("attr4", "val4");
+%>
+
+<h1>JSTL SET tag</h1>
+<c:set var="attr5" value="val5"></c:set> <!-- page가 기본값 -->
+${pageScope.attr1 } : ${pageScope.attr5 } <br>
+
+<c:set var="attr6" value="val6" scope="request"></c:set>
+${requestScope.attr2 } : ${requestScope.attr6 } <br>
+
+
+<c:set var="attr7" value="val7" scope="session"></c:set>
+${sessionScope.attr3 } : ${sessionScope.attr7 } <br>
+
+<c:set var="attr8" value="val8" scope="application"></c:set>
+${applicationScope.attr4 } : ${applicationScope.attr8 } <br>
+
+</body>
+</html>

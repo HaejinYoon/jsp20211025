@@ -4,12 +4,47 @@ public class Bean06 {
 	private String title;
 	private String writer;
 	private int price;
+	private String publisher;
+	private int stock;
 	
 	public Bean06(String title, String writer, int price) {
 		super();
 		this.title = title;
 		this.writer = writer;
 		this.price = price;
+	}
+	
+	public Bean06(String title, String writer, int price, String publisher) {
+		super();
+		this.title = title;
+		this.writer = writer;
+		this.price = price;
+		this.publisher = publisher;
+	}
+
+	public Bean06(String title, String writer, int price, String publisher, int stock) {
+		super();
+		this.title = title;
+		this.writer = writer;
+		this.price = price;
+		this.publisher = publisher;
+		this.stock = stock;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+	
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+	
+	public String getPublisher() {
+		return publisher;
+	}
+	
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
 	}
 
 	public String getTitle() {
