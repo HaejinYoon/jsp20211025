@@ -13,34 +13,56 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/icon/css/all.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-
-
-
 <style>
-
+	h1 {
+		margin: 20px;
+	}
+	hr{
+		border-width : 5px;
+	}
+	form {
+		margin: 20px;
+	}
+	.form-control {
+		margin-bottom: 10px;
+	}
+	
+	th {
+		text-align: center;
+	}
+	.c1 {
+		width: 120px;
+	}
+	.table td {
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.book_regi {
+		margin: 10px;
+	}
 </style>
 
-<title>LIST BOOK</title>
+<title>BOOK LIST</title>
 </head>
 <body>
 <h1>Book List (${fn:length(books) } Books)</h1>
-
-<a href="25book-form.jsp">Book Registration</a>
+<hr>
 <c:if test="${empty books }">
 	<p>No books registered.</p>
 </c:if>
 
 <c:if test="${not empty books }">
-	<table class="table table-dark table-hover">
-		<thead>
+	<table class="table table-hover">
+		<thead class="thead-dark">
 			<tr>
-				<th></th>
+				<th class="c1">Modify/Delete</th>
 				<th>#</th>
-				<th>제목</th>
-				<th>저자</th>
-				<th>가격</th>
-				<th>출판사</th>
-				<th>재고 수량</th>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Price</th>
+				<th>Publisher</th>
+				<th>Stock</th>
 			</tr>
 		</thead>
 		
@@ -54,8 +76,8 @@
 						<c:param name="index" value="${vs.index }"></c:param>
 					</c:url>
 					<td>
+						<a class="btn btn-secondary" href="25modify.jsp?index=${vs.index }"><i class="fas fa-edit"></i></a>
 						<a class="btn btn-danger" href="25delete.jsp?index=${vs.index }"><i class="fas fa-trash-alt"></i></a>
-						<a href="25modify.jsp?index=${vs.index }" class="btn btn-secondary"><i class="fas fa-edit"></i></a>
 					</td>
 					<td><c:out value="${vs.count }"></c:out></td>
 					<td><c:out value="${book.title }"></c:out></td>
@@ -68,6 +90,9 @@
 		</tbody>
 	</table>
 </c:if>
+<hr>
+<a href="25book-form.jsp" class="book_regi"><button type="button" class="btn btn-secondary"><i class="far fa-caret-square-left"></i> Book Registration</button></a>
+
 <%
 
 %>
