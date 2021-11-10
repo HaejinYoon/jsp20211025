@@ -9,17 +9,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/icon/css/all.css">
-<style>
-table {
-	border-collapse: collapse;
-	width: 100%;
-}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-table, th, td {
-	border: 1px solid black;
-	text-align: center;
-}
+
+
+
+<style>
+
 </style>
 
 <title>LIST BOOK</title>
@@ -33,29 +31,48 @@ table, th, td {
 </c:if>
 
 <c:if test="${not empty books }">
-	<table>
-		<tr>
-			<th>#</th>
-			<th>제목</th>
-			<th>저자</th>
-			<th>가격</th>
-			<th>출판사</th>
-			<th>재고 수량</th>
-		</tr>
-		<c:forEach items="${books }" var="book" varStatus="vs">
+	<table class="table table-dark table-hover">
+		<thead>
 			<tr>
-				<td><c:out value="${vs.count }"></c:out></td>
-				<td><c:out value="${book.title }"></c:out></td>
-				<td><c:out value="${book.writer }"></c:out></td>
-				<td><c:out value="${book.price }"></c:out></td>
-				<td><c:out value="${book.publisher }"></c:out></td>
-				<td><c:out value="${book.stock }"></c:out></td>
+				<th></th>
+				<th>#</th>
+				<th>제목</th>
+				<th>저자</th>
+				<th>가격</th>
+				<th>출판사</th>
+				<th>재고 수량</th>
 			</tr>
-		</c:forEach>
+		</thead>
+		
+		<tbody>
+			<c:forEach items="${books }" var="book" varStatus="vs">
+				<tr>
+					<c:url value="25delete.jsp" var="deleteUrl">
+						<c:param name="index" value="${vs.index }"></c:param>
+					</c:url>
+					<c:url value="25modify.jsp" var="modifyUrl">
+						<c:param name="index" value="${vs.index }"></c:param>
+					</c:url>
+					<td>
+						<a class="btn btn-danger" href="25delete.jsp?index=${vs.index }"><i class="fas fa-trash-alt"></i></a>
+						<a href="25modify.jsp?index=${vs.index }" class="btn btn-secondary"><i class="fas fa-edit"></i></a>
+					</td>
+					<td><c:out value="${vs.count }"></c:out></td>
+					<td><c:out value="${book.title }"></c:out></td>
+					<td><c:out value="${book.writer }"></c:out></td>
+					<td><c:out value="${book.price }"></c:out></td>
+					<td><c:out value="${book.publisher }"></c:out></td>
+					<td><c:out value="${book.stock }"></c:out></td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
 </c:if>
 <%
 
 %>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </body>
 </html>
