@@ -52,7 +52,7 @@
 
 <hr>
 
-<a href="25list-book.jsp"><button type="button" class="btn btn-secondary">Show Book List</button></a>
+<a href="25list-book-tag.jsp"><button type="button" class="btn btn-secondary">Show Book List</button></a>
 
 <%
 
