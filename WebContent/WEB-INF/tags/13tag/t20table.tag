@@ -25,7 +25,7 @@
 					<c:param name="index" value="${status.index }" />
 				</c:url>
 				<td>
-					<a class="btn btn-danger" href="${deleteUrl }"><i class="fas fa-trash-alt"></i></a>
+					<button type="button" class="btn btn-danger delete-modal-button" data-href="${deleteUrl }" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-alt"></i></button>
 					<a href="${modifyUrl }" class="btn btn-secondary">
 						<i class="fas fa-edit"></i>
 					</a>	
