@@ -15,6 +15,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
 <style>
+p{
+	margin: 20px;
+}
 h1 {
 	margin: 20px;
 }
@@ -53,7 +56,14 @@ th {
 <title>BOOK LIST</title>
 </head>
 <body>
-	<h1>Book List (${fn:length(books) } Books)</h1>
+	<c:choose>
+		<c:when test="${fn:length(books) eq 1 }">
+			<h1>Book List (${fn:length(books) } Book)</h1>
+		</c:when>
+		<c:otherwise>
+			<h1>Book List (${fn:length(books) } Books)</h1>
+		</c:otherwise>
+	</c:choose>
 	<hr>
 	<c:if test="${empty books }">
 		<p>No books registered.</p>
@@ -117,7 +127,7 @@ th {
 	<hr>
 	<a href="25book-form.jsp" class="book_regi">
 		<button type="button" class="btn btn-secondary">
-			<i class="far fa-caret-square-left"></i>
+			<i class="fas fa-plus-square"></i>
 			Book Registration
 		</button>
 	</a>
