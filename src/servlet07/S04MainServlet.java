@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class S04MainServlet
  */
-@WebServlet("/servlet06/main")
+@WebServlet("/servlet07/main")
 public class S04MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,16 +26,16 @@ public class S04MainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String path = "/WEB-INF/view/servlet07/s01main.jsp";
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String path = "/WEB-INF/view/servlet07/s01main.jsp";
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }
