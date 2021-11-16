@@ -15,24 +15,9 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-2">
-				<!-- SIDE MENU -->
-				<!-- ul.nav.flex-column>li.nav-item*3>a.nav-link -->
-				<ul class="nav flex-column">
-					<li class="nav-item">
-						<a href="${pageContext.request.contextPath }/servlet08/main" class="nav-link">MAIN</a>
-					</li>
-					<li class="nav-item">
-						<a href="${pageContext.request.contextPath }/servlet08/add" class="nav-link">ADD</a>
-					</li>
-					<li class="nav-item">
-						<a href="${pageContext.request.contextPath }/servlet08/list" class="nav-link">LIST</a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-10">
+			<div class="col">
 				<!-- MAIN CONTENT -->
-				<h1>Book List APP</h1>
+				<h2>Book List APP</h2>
 				<!-- table.table>thead>tr>th*6^^tbody -->
 				<table class="table">
 					<thead>

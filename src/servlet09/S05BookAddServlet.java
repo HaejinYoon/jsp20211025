@@ -32,7 +32,7 @@ public class S05BookAddServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "/WEB-INF/view/servlet08/add.jsp";
+		String path = "/WEB-INF/view/servlet09/add.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
@@ -57,13 +57,14 @@ public class S05BookAddServlet extends HttpServlet {
 		
 		int price = Integer.parseInt(priceStr);
 		int stock = Integer.parseInt(stockStr);
-		Bean06 book1 = new Bean06("servlet09에서 추가한 책", "kim", 20000, "apub", 24);
-		list.add(book1);
+		
 		Bean06 book = new Bean06(title, writer, price, publisher, stock);
 		list.add(book);
 		
-		String location = request.getContextPath()+"/servlet08/list";
-		response.sendRedirect(location);
+		
+		  String location = request.getContextPath()+"/servlet09/main";
+		  response.sendRedirect(location);
+		 
 	}
 
 }

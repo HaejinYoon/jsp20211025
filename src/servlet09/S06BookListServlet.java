@@ -39,9 +39,8 @@ public class S06BookListServlet extends HttpServlet {
 			list= new ArrayList<>();
 			session.setAttribute("books", list);
 		}
-		 Bean06 book1 = new Bean06("servlet09에서 추가한 책", "kim", 20000, "apub", 24); 
-		 list.add(book1);
-		String path = "/WEB-INF/view/servlet08/list.jsp";
+		 
+		String path = "/WEB-INF/view/servlet09/list.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 

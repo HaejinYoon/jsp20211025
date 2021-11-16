@@ -58,10 +58,6 @@ public class S02BookAddServlet extends HttpServlet {
 		
 		int price = Integer.parseInt(priceStr);
 		int stock = Integer.parseInt(stockStr);
-		
-		
-		 Bean06 book1 = new Bean06("servlet08에서 추가한 책", "kim", 20000, "apub", 24); 
-		 list.add(book1);
 		 
 		Bean06 book = new Bean06(title, writer, price, publisher, stock);
 		//3. 책 추가
