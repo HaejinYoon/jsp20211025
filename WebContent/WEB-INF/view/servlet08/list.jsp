@@ -13,57 +13,103 @@
 <title>Book List</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-2">
-				<!-- SIDE MENU -->
-				<!-- ul.nav.flex-column>li.nav-item*3>a.nav-link -->
-				<ul class="nav flex-column">
-					<li class="nav-item">
-						<a href="${pageContext.request.contextPath }/servlet08/main" class="nav-link">MAIN</a>
-					</li>
-					<li class="nav-item">
-						<a href="${pageContext.request.contextPath }/servlet08/add" class="nav-link">ADD</a>
-					</li>
-					<li class="nav-item">
-						<a href="${pageContext.request.contextPath }/servlet08/list" class="nav-link">LIST</a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-10">
-				<!-- MAIN CONTENT -->
-				<h1>Book Management APP</h1>
-				<h2>Book List</h2>
-				<!-- table.table>thead>tr>th*6^^tbody -->
-				<table class="table">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Title</th>
-							<th>Author</th>
-							<th>Price</th>
-							<th>Publisher</th>
-							<th>Stock</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${books }" var="book" varStatus="status">
-							<tr>
-								<td>${status.count }</td>
-								<td>${book.title }</td>
-								<td>${book.writer }</td>
-								<td>${book.price }</td>
-								<td>${book.publisher }</td>
-								<td>${book.stock }</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-2">
+        <!-- SIDE MENU -->
+        <!-- ul.nav.flex-column>li.nav-item*3>a.nav-link -->
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a href="${pageContext.request.contextPath }/servlet08/main" class="nav-link">MAIN</a>
+          </li>
+          <li class="nav-item">
+            <a href="${pageContext.request.contextPath }/servlet08/add" class="nav-link">ADD</a>
+          </li>
+          <li class="nav-item">
+            <a href="${pageContext.request.contextPath }/servlet08/list" class="nav-link">LIST</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-10">
+        <!-- MAIN CONTENT -->
+        <h1>Book Management APP</h1>
+        <h2>Book List</h2>
+        <!-- table.table>thead>tr>th*6^^tbody -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Price</th>
+              <th>Publisher</th>
+              <th>Stock</th>
+              <th>Delete</th>
+              <th>Modify</th>
+            </tr>
+          </thead>
+          <tbody>
+            <c:forEach items="${books }" var="book" varStatus="status">
+              <tr>
+                <td>${status.count }</td>
+                <td>${book.title }</td>
+                <td>${book.writer }</td>
+                <td>${book.price }</td>
+                <td>${book.publisher }</td>
+                <td>${book.stock }</td>
+                <td>
+                  <c:url value="/servlet08/remove" var="removeUrl">
+                    <c:param name="id" value="${status.index }"></c:param>
+                  </c:url>
+                  <!-- button.btn.btn-danger>i.fas.fa-trash -->
+                  <button class="btn btn-danger removeBtn" data-toggle="modal" data-target="#confirmModal1" data-link="${removeUrl }">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+                <td>
+                  <c:url value="/servlet08/modify" var="modifyUrl">
+                    <c:param name="id" value="${status.index }"></c:param>
+                  </c:url>
+                  <!-- a.btn.btn-warning>i.fas.fa-pencil -->
+                  <a href="${modifyUrl }" class="btn btn-warning">
+                  	<i class="fas fa-edit"></i>
+                  </a>
+                </td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+  <!-- Modal -->
+  <div class="modal fade" id="confirmModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">Are you sure want to delete?</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <a id="removeModalBtn1" href="" type="button" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+  <script>
+  	$(document).ready(function(){
+  		$(".removeBtn").click(function(){
+  			let link = $(this).attr("data-link");
+  			$("#removeModalBtn1").attr("href", link);
+  		});
+  	});
+  </script>
 </body>
 </html>

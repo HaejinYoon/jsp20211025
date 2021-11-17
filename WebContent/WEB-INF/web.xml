@@ -38,4 +38,15 @@
   	<servlet-name>servlet0104</servlet-name>
   	<url-pattern>/servlet01/servlet04</url-pattern>
   </servlet-mapping>
+  
+  <!-- 필터 설정 -->
+  <filter>
+  	<filter-name>f03filter</filter-name>
+  	<filter-class>filter01.F03Filter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>f03filter</filter-name>
+  	<url-pattern>/filterex1/s03</url-pattern>
+  </filter-mapping>
 </web-app>

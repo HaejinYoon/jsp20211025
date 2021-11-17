@@ -1,7 +1,6 @@
-package servlet09;
+package servlet08;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,16 +13,16 @@ import javax.servlet.http.HttpSession;
 import sample03javabean.Bean06;
 
 /**
- * Servlet implementation class S04BookMainServlet
+ * Servlet implementation class S05BookModifyServlet
  */
-@WebServlet("/servlet09/main")
-public class S04BookMainServlet extends HttpServlet {
+@WebServlet("/servlet08/modify")
+public class S05BookModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public S04BookMainServlet() {
+	public S05BookModifyServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,7 +33,23 @@ public class S04BookMainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String path = "/WEB-INF/view/servlet09/main.jsp";
+		// 0. 사전작업
+		HttpSession session = request.getSession();
+		List<Bean06> list = (List<Bean06>) session.getAttribute("books");
+
+		// 2. request 분석/가공
+		String idStr = request.getParameter("id");
+		int index = Integer.parseInt(idStr);
+
+		// 3. 비지니스 로직
+		Bean06 book = list.get(index);
+
+		// 4. attribute 추가
+		request.setAttribute("index", index);
+		request.setAttribute("book", book);
+
+		// 5. forward/redirect
+		String path = "/WEB-INF/view/servlet08/modify.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
@@ -44,37 +59,37 @@ public class S04BookMainServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-
+		// 0. 사전작업
 		HttpSession session = request.getSession();
 		List<Bean06> list = (List<Bean06>) session.getAttribute("books");
+		request.setCharacterEncoding("utf-8");
 		
-		if (list == null) {
-			list = new ArrayList<>();
-			session.setAttribute("books", list);
-		}
-
+		// 2. request 분석/가공
+		String indexStr = request.getParameter("index");
 		String title = request.getParameter("title");
 		String writer = request.getParameter("writer");
 		String priceStr = request.getParameter("price");
 		String publisher = request.getParameter("publisher");
 		String stockStr = request.getParameter("stock");
 		
-		String indexStr = request.getParameter("id");
-
+		int index = Integer.parseInt(indexStr);
 		int price = Integer.parseInt(priceStr);
 		int stock = Integer.parseInt(stockStr);
+		// 3. 비지니스 로직
+		Bean06 book = list.get(index);
+		book.setTitle(title);
+		book.setWriter(writer);
+		book.setPrice(price);
+		book.setPublisher(publisher);
+		book.setStock(stock);
 		
-		if(indexStr!=null) {
-			int index = Integer.parseInt(indexStr);
-			list.remove(index);
-		}
-		Bean06 book = new Bean06(title, writer, price, publisher, stock);
-		list.add(book);
+
+		// 4. attribute 추가
 		
-		// 3. 비즈니스 로직
-		String location = request.getContextPath()+"/servlet09/main";
-		response.sendRedirect(location);
+
+		// 5. forward/redirect
+		String path = "/WEB-INF/view/servlet08/list.jsp";
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }
