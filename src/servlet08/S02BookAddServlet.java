@@ -41,7 +41,7 @@ public class S02BookAddServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//한글 인코딩
-		request.setCharacterEncoding("utf-8");
+		//request.setCharacterEncoding("utf-8");
 		//0. 사전작업
 		HttpSession session = request.getSession();
 		List<Bean06> list = (List<Bean06>)session.getAttribute("books");
