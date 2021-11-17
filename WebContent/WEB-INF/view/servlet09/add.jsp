@@ -22,23 +22,23 @@
 					<!-- .form-group*6>.label+input.form-control -->
 					<div class="form-group">
 						<label>Title</label>
-						<input type="text" class="form-control" name="title">
+						<input type="text" class="form-control" name="title" value="JAVA">
 					</div>
 					<div class="form-group">
 						<label>Author</label>
-						<input type="text" class="form-control" name="writer">
+						<input type="text" class="form-control" name="writer" value="Lee">
 					</div>
 					<div class="form-group">
 						<label>Price</label>
-						<input type="number" class="form-control" name="price">
+						<input type="number" class="form-control" name="price" value="24000">
 					</div>
 					<div class="form-group">
 						<label>Publisher</label>
-						<input type="text" class="form-control" name="publisher">
+						<input type="text" class="form-control" name="publisher" value="apub">
 					</div>
 					<div class="form-group">
 						<label>Stock</label>
-						<input type="number" class="form-control" name="stock">
+						<input type="number" class="form-control" name="stock" value="28">
 					</div>
 					<input type="submit" value="Register" class="btn btn-primary">
 				</form>

@@ -48,7 +48,7 @@ public class S08BookModifyServlet extends HttpServlet {
 				request.setAttribute("book", book);
 
 				// 5. forward/redirect
-				String path = "/WEB-INF/view/servlet08/modify.jsp";
+				String path = "/WEB-INF/view/servlet09/main.jsp";
 				request.getRequestDispatcher(path).forward(request, response);
 	}
 

@@ -32,7 +32,7 @@ public class S06BookListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		//request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		List<Bean06> list = (List<Bean06>)session.getAttribute("books");
 		if(list==null) {

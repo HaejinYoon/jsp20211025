@@ -123,12 +123,22 @@
   
   <!-- Book App Char Encoding Filter -->
   <filter>
-  	<filter-name>BookCharEncodingFilter</filter-name>
+  	<filter-name>BookCharEncodingFilter08</filter-name>
   	<filter-class>servlet08.S01BookCharEncodingFilter</filter-class>
   </filter>
   
   <filter-mapping>
-  	<filter-name>BookCharEncodingFilter</filter-name>
+  	<filter-name>BookCharEncodingFilter08</filter-name>
   	<url-pattern>/servlet08/*</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+  	<filter-name>BookCharEncodingFilter09</filter-name>
+  	<filter-class>servlet09.S04BookCharEncodingFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>BookCharEncodingFilter09</filter-name>
+  	<url-pattern>/servlet09/*</url-pattern>
   </filter-mapping>
 </web-app>

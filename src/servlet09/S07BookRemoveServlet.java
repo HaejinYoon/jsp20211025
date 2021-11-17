@@ -43,7 +43,7 @@ public class S07BookRemoveServlet extends HttpServlet {
 				// 4. data를 attribute에 추가
 				
 				// 5. forward or redirect
-				String location = request.getContextPath()+"/servlet08/list";
+				String location = request.getContextPath()+"/servlet09/main";
 				response.sendRedirect(location);
 	}
 

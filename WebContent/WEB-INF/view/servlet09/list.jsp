@@ -41,11 +41,12 @@
                 <td>${book.price }</td>
                 <td>${book.publisher }</td>
                 <td>${book.stock }</td>
-                <c:url value="/servlet09/remove" var="removeUrl">
-                  <c:param name="id" value="${status.index }"></c:param>
-                </c:url>
                 <td>
-                  <button class="btn btn-danger">
+                  <c:url value="/servlet09/remove" var="removeUrl">
+                    <c:param name="id" value="${status.index }" />
+                  </c:url>
+                  <!-- button.btn.btn-danger>i.fas.fa-trash -->
+                  <button class="btn btn-danger removeBtn" data-toggle="modal" data-target="#confirmModal1" data-link="${removeUrl }">
                     <i class="fas fa-trash"></i>
                   </button>
                 </td>
@@ -93,6 +94,6 @@
 					$("#removeModalBtn1").attr("href", link);
 				});
 			});
-		</script>
+  </script>
 </body>
 </html>

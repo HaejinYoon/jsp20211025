@@ -40,7 +40,7 @@ public class S05BookAddServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		//request.setCharacterEncoding("utf-8");
 		
 		HttpSession session=request.getSession();
 		List<Bean06> list = (List<Bean06>)session.getAttribute("books");
@@ -60,6 +60,8 @@ public class S05BookAddServlet extends HttpServlet {
 		
 		Bean06 book = new Bean06(title, writer, price, publisher, stock);
 		list.add(book);
+		Bean06 book1 = new Bean06("java", "kim", 20000, "Pubg", 20);
+		list.add(book1);
 		
 		
 		  String location = request.getContextPath()+"/servlet09/main";
