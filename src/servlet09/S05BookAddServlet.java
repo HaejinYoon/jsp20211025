@@ -60,11 +60,9 @@ public class S05BookAddServlet extends HttpServlet {
 		
 		Bean06 book = new Bean06(title, writer, price, publisher, stock);
 		list.add(book);
-		Bean06 book1 = new Bean06("java", "kim", 20000, "Pubg", 20);
-		list.add(book1);
 		
 		
-		  String location = request.getContextPath()+"/servlet09/main";
+		  String location = request.getContextPath()+"/servlet09/main?";
 		  response.sendRedirect(location);
 		 
 	}
