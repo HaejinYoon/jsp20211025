@@ -40,8 +40,7 @@ public class JDBC02Servlet extends HttpServlet {
 		try(Connection con = pool.getConnection(); // db와의 연결 정보를 가진 객체
 			Statement stmt = con.createStatement(); // 쿼리 실행을 위한 객체
 				){
-			ResultSet rs = null;
-			rs = stmt.executeQuery(sql); // 쿼리 실행 결과를 저장한 객체
+			ResultSet rs = stmt.executeQuery(sql); // 쿼리 실행 결과를 저장한 객체
 			if(rs.next()) {
 				String LastName = rs.getString(1);
 				System.out.println(LastName);
