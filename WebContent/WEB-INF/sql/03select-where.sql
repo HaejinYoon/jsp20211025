@@ -18,10 +18,15 @@ SELECT * FROM Customers WHERE CustomerID != 1;
 select * from Employees;
 
 -- 비교연산자 주의
-SELECT * FROM Customers WHERE CustomerID = 1;
+SELECT * FROM Customers WHERE CustomerID = 1; -- number와 string 연산시 형변환 일어남 (string->number)
 SELECT * FROM Customers WHERE CustomerID = '1';
 
 SELECT * FROM Customers WHERE CustomerID <= '3';
+
+SELECT * FROM Customers WHERE Country >='Mexico'; -- 사전순(캐릭터코드) 비교
+SELECT * FROM Customers WHERE Country <'Mexico';
+
+SELECT * FROM Customers WHERE Country >='mexico'; -- 대소문자 구분
 
 SELECT * FROM Customers WHERE CustomerID >= 'Mexico';
 SELECT * FROM Employees WHERE EmployeeID > 5;
