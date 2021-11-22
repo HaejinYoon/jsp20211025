@@ -17,7 +17,29 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
-			${lastName } ${firstName }
+		<h1>Employees List</h1>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Date of Birth</th>
+						<th>Photos</th>
+						<th>Notes</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${employees }" var="emp">
+						<tr>
+							<td>${emp.firstName }</td>
+							<td>${emp.lastName }</td>
+							<td>${emp.birthDate }</td>
+							<td>${emp.photo }</td>
+							<td>${emp.notes }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>

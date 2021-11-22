@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
+import jdbc02.bean.Employee;
 
 /**
  * Servlet implementation class JDBC06Servlet
@@ -42,10 +46,15 @@ public class JDBC06Servlet extends HttpServlet {
 
 				String lastName = "";
 				String firstName = "";
+				String birthDate = "";
+				String photo = "";
+				String notes = "";
+				
+				List<Employee> Employees = new ArrayList<>();
 				//2. request 분석 가공
 				
 				//3. business logic
-				String sql = "SELECT LastName, FirstName FROM Employees WHERE EmployeeID = 1";
+				String sql = "SELECT LastName, FirstName, BirthDate, Photo, Notes FROM Employees";
 				
 				try {
 					// 3.1 커넥션 얻기
@@ -57,8 +66,15 @@ public class JDBC06Servlet extends HttpServlet {
 					// 3.4 resultSet 처리
 					while (rs.next()) {
 						// System.out.println(i + " : " + rs.getString(1));
-						lastName=rs.getString(1);
-						firstName=rs.getString(2);
+						Employee emp = new Employee();
+						
+						emp.setFirstName(rs.getString(1));
+						emp.setLastName(rs.getString(2));
+						emp.setBirthDate(rs.getString(3));
+						emp.setPhoto(rs.getString(4));
+						emp.setNotes(rs.getString(5));
+						
+						Employees.add(emp);	
 					}
 					// System.out.println("ResultSet finished.");
 				} catch (Exception e) {
@@ -90,8 +106,7 @@ public class JDBC06Servlet extends HttpServlet {
 					}
 				}
 				//4. add attribute
-				request.setAttribute("lastName", lastName);
-				request.setAttribute("firstName", firstName);
+				request.setAttribute("employees", Employees);
 				
 				//5. forward / redirect
 				String path = "/WEB-INF/view/jdbc01/v06.jsp";
