@@ -10,38 +10,39 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/icon/css/all.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-<title>v08</title>
+<title>v10</title>
 </head>
 <body>
-
-	<!-- .container>.row>.col>h1{Customers} -->
+	<!-- .container>.row>.col>h1{Suppliers List} -->
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<h1>Customers List</h1>
-				<!-- table.table>thead>tr>th*4^^>tbody -->
+				<h1>Suppliers List</h1>
+				<!-- table.table>thead>tr>th*8^^>tbody -->
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Customer ID</th>
-							<th>Customer Name</th>
+							<th>Supplier ID</th>
+							<th>Supplier Name</th>
 							<th>Contact Name</th>
 							<th>Address</th>
 							<th>City</th>
 							<th>Postal Code</th>
 							<th>Country</th>
+							<th>Phone</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${customers }" var="customer">
+						<c:forEach items="${suppliers }" var="sup">
 							<tr>
-								<td>${customer.customerID }</td>
-								<td>${customer.customerName }</td>
-								<td>${customer.contactName }</td>
-								<td>${customer.address }</td>
-								<td>${customer.city }</td>
-								<td>${customer.postalCode }</td>
-								<td>${customer.country }</td>
+								<td>${sup.supplierID }</td>
+								<td>${sup.supplierName }</td>
+								<td>${sup.contactName }</td>
+								<td>${sup.address }</td>
+								<td>${sup.city }</td>
+								<td>${sup.postalCode }</td>
+								<td>${sup.country }</td>
+								<td>${sup.phone }</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -49,6 +50,7 @@
 			</div>
 		</div>
 	</div>
+
 
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
