@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -44,17 +45,13 @@ public class JDBC06Servlet extends HttpServlet {
 				Statement stmt = null;
 				ResultSet rs = null;
 
-				String lastName = "";
-				String firstName = "";
-				String birthDate = "";
-				String photo = "";
-				String notes = "";
+				
 				
 				List<Employee> Employees = new ArrayList<>();
 				//2. request 분석 가공
 				
 				//3. business logic
-				String sql = "SELECT LastName, FirstName, BirthDate, Photo, Notes FROM Employees";
+				String sql = "SELECT EmployeeID, LastName, FirstName, BirthDate, Photo, Notes FROM Employees";
 				
 				try {
 					// 3.1 커넥션 얻기
@@ -68,11 +65,12 @@ public class JDBC06Servlet extends HttpServlet {
 						// System.out.println(i + " : " + rs.getString(1));
 						Employee emp = new Employee();
 						
-						emp.setFirstName(rs.getString(1));
-						emp.setLastName(rs.getString(2));
-						emp.setBirthDate(rs.getString(3));
-						emp.setPhoto(rs.getString(4));
-						emp.setNotes(rs.getString(5));
+						emp.setEmployeeID(rs.getInt(1));
+						emp.setFirstName(rs.getString(2));
+						emp.setLastName(rs.getString(3));
+						emp.setBirthDate(rs.getDate(4));
+						emp.setPhoto(rs.getString(5));
+						emp.setNotes(rs.getString(6));
 						
 						Employees.add(emp);	
 					}

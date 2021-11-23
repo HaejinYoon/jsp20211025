@@ -1,9 +1,12 @@
 package jdbc02.bean;
 
+import java.util.Date;
+
 public class Employee {
+	private int employeeID;
 	private String lastName;
 	private String firstName;
-	private String birthDate;
+	private Date birthDate;
 	private String photo;
 	private String notes;
 	
@@ -19,10 +22,10 @@ public class Employee {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public String getBirthDate() {
+	public Date getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 	public String getPhoto() {
@@ -37,6 +40,13 @@ public class Employee {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
+	public int getEmployeeID() {
+		return employeeID;
+	}
+	public void setEmployeeID(int employeeID) {
+		this.employeeID = employeeID;
+	}
+
 	
 
 	

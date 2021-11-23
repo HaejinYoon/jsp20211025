@@ -11,41 +11,17 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/icon/css/all.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-<title>v06</title>
+<title>v12</title>
 </head>
 <body>
-<div class="container">
-	<div class="row">
-		<div class="col">
-		<h1>Employees List</h1>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Employee ID</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Date of Birth</th>
-						<th>Photos</th>
-						<th>Notes</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${employees }" var="emp">
-						<tr>
-							<td>${emp.employeeID }</td>
-							<td>${emp.firstName }</td>
-							<td>${emp.lastName }</td>
-							<td>${emp.birthDate }</td>
-							<td>${emp.photo }</td>
-							<td>${emp.notes }</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
-
+<h1>직원 1명</h1>
+<p>id : ${customer.customerID }</p>
+<p>custname : ${customer.customerName }</p>
+<p>contname : ${customer.contactName }</p>
+<p>address : ${customer.address }</p>
+<p>city : ${customer.city }</p>
+<p>postal code : ${customer.postalCode }</p>
+<p>country : ${customer.country }</p>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
