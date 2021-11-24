@@ -1,7 +1,7 @@
 package jdbc02.bean;
 
 public class Supplier {
-	private String supplierID;
+	private int supplierID;
 	private String supplierName;
 	private String ContactName;
 	private String address;
@@ -10,10 +10,10 @@ public class Supplier {
 	private String country;
 	private String phone;
 	
-	public String getSupplierID() {
+	public int getSupplierID() {
 		return supplierID;
 	}
-	public void setSupplierID(String supplierID) {
+	public void setSupplierID(int supplierID) {
 		this.supplierID = supplierID;
 	}
 	public String getSupplierName() {

@@ -83,4 +83,33 @@ public class CustomerDAO {
 		return rowCount == 1;
 	}
 
+	public boolean update(Connection con, Customer customer) {
+		String sql = "UPDATE Customers " + 
+				" SET " + 
+				"	CustomerName=?," + 
+				"	ContactName=?," + 
+				"	Address=?," + 
+				"	City=?," + 
+				"	PostalCode=?," + 
+				"	Country=?" + 
+				" WHERE " + 
+				"	CustomerID = ?";
+		
+		int rowCount = 0;
+		try(PreparedStatement pstmt = con.prepareStatement(sql)) {
+			int i = 1;
+			pstmt.setString(i++, customer.getCustomerName());
+			pstmt.setString(i++, customer.getContactName());
+			pstmt.setString(i++, customer.getAddress());
+			pstmt.setString(i++, customer.getCity());
+			pstmt.setString(i++, customer.getPostalCode());
+			pstmt.setString(i++, customer.getCountry());
+			pstmt.setInt(i++, customer.getCustomerID());
+			rowCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowCount == 1;
+	}
+
 }
