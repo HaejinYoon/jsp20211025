@@ -44,7 +44,7 @@
 								<td>${supp.country }</td>
 								<td>${supp.phone }</td>
 								<td>
-									<c:url value="/servlet08/remove" var="removeUrl">
+									<c:url value="/jdbc06/s26rm" var="removeUrl">
 										<c:param name="id" value="${supp.supplierID }"></c:param>
 									</c:url>
 									<!-- button.btn.btn-danger>i.fas.fa-trash -->

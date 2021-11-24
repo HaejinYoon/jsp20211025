@@ -2,6 +2,7 @@ package jdbc06;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -38,10 +39,11 @@ public class JDBC26Servlet extends HttpServlet {
 		DataSource ds = (DataSource) application.getAttribute("dbpool");
 		SupplierDAO dao = new SupplierDAO();
 		boolean ok = false;
-		Supplier supplier = new Supplier();
+//		Supplier supplier = new Supplier();
 		List<String> list = null;
-		
+		List<Supplier> supplier = new ArrayList<>();
 		int id = Integer.parseInt(request.getParameter("id"));
+		System.out.println("s26 id : " + id);
 //		supplier.setSupplierName("Samsung");
 //		supplier.setContactName("SamsungElec");
 //		supplier.setAddress("Dongtan");
@@ -52,14 +54,14 @@ public class JDBC26Servlet extends HttpServlet {
 //		supplier.setSupplierID(108);
 		
 		try(Connection con = ds.getConnection()) {
-			supplier = (Supplier) dao.getSupplierByID(con, id); 
+			supplier = dao.getSupplierByID(con, id); 
 			list=dao.getCountryList(con);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		request.setAttribute("supp", supplier);
+		System.out.println("s26 supplier list : " + supplier.toString());
+		request.setAttribute("supplierList", supplier);
 		request.setAttribute("countryList", list);
 		
 		String path="/WEB-INF/view/jdbc06/v26.jsp";
@@ -84,13 +86,23 @@ public class JDBC26Servlet extends HttpServlet {
 		supplier.setPostalCode(request.getParameter("postalCode"));
 		supplier.setCountry(request.getParameter("country"));
 		supplier.setPhone(request.getParameter("phone"));
-		supplier.setSupplierID((Integer.parseInt(request.getParameter("index"))));
+		supplier.setSupplierID((Integer.parseInt(request.getParameter("supplierID"))));
 		
 		try(Connection con = ds.getConnection()) {
 			ok = dao.update(con, supplier); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		List<Supplier> s = new ArrayList<>();
+		try (Connection con = ds.getConnection();) {
+			s = dao.getAllSuppliers(con);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		// 4. add attribute
+		request.setAttribute("supplierList", s);
 		
 		String path="/WEB-INF/view/jdbc05/v22list.jsp";
 		request.getRequestDispatcher(path).forward(request, response);

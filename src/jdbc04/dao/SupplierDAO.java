@@ -104,7 +104,7 @@ public class SupplierDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		System.out.println("all list : " + list.toString());
 		return list;
 	}
 
@@ -144,15 +144,15 @@ public class SupplierDAO {
 		List<Supplier> list = new ArrayList<>();
 		String sql = "SELECT SupplierID, SupplierName, ContactName,	Address, City, PostalCode, Country, Phone "
 				+ " FROM Suppliers WHERE SupplierID = ?";
+		System.out.println("DAO id : "+id);
 
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, id);
-
 			try (ResultSet rs = pstmt.executeQuery();) {
-				if (rs.next()) {
+				while (rs.next()) {
 					Supplier supp = new Supplier();
 					int i = 1;
-
+					
 					supp.setSupplierID(rs.getInt(i++));
 					supp.setSupplierName(rs.getString(i++));
 					supp.setContactName(rs.getString(i++));
@@ -168,6 +168,7 @@ public class SupplierDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("DAO list : " + list.toString());
 		return list;
 	}
 

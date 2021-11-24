@@ -20,8 +20,10 @@
 				<h1>Supplier Modification</h1>
 
 				<!-- form>(.form-group>label[for=input$]+input.form-control#input$)*6+.form-group>label[for=select1]+select.form-control#select1 -->
+				
 				<form action="" method="post">
-				<input type="hidden" name="index" value="${index }">
+				<c:forEach items="${supplierList }" var="supp">
+				<input type="hidden" name="supplierID" value="${supp.supplierID }">
 					<div class="form-group">
 						<label for="input1">Supplier Name</label>
 						<input type="text" class="form-control" id="input1" name ="supplierName" value="${supp.supplierName}">
@@ -47,6 +49,11 @@
 						<input type="text" class="form-control" id="input6" name="phone" value="${supp.phone}">
 					</div>
 					<div class="form-group">
+						<label for="input7">Original Country</label>
+						<input type="text" class="form-control" id="input7" name="country1" value="${supp.country}" readonly>
+					</div>
+				</c:forEach>
+					<div class="form-group">
 						<label for="select1">Country</label>
 						<select name="country" id="select1" class="form-control">
 							<c:forEach items="${countryList }" var="country">
@@ -57,7 +64,9 @@
 
 					<!-- input:s.btn.btn-outline-primary -->
 					<input type="submit" value="Modify" class="btn btn-outline-primary">
+					<a href="${pageContext.request.contextPath }/jdbc05/s22list" class="btn btn-secondary">Cancel</a>
 				</form>
+				
 			</div>
 		</div>
 	</div>

@@ -58,7 +58,7 @@ public class JDBC16Servlet extends HttpServlet {
 					Supplier supp = new Supplier();
 					int i = 1;
 
-					supp.setSupplierID(rs.getString(i++));
+					supp.setSupplierID(rs.getInt(i++));
 					supp.setSupplierName(rs.getString(i++));
 					supp.setContactName(rs.getString(i++));
 					supp.setAddress(rs.getString(i++));

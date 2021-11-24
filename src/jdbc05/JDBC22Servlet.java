@@ -131,49 +131,12 @@ public class JDBC22Servlet extends HttpServlet {
 		// 0. 사전작업
 		List<Supplier> s = new ArrayList<>();
 
-		Supplier sup = new Supplier();
-
-		// 2. request 분석/가공
-
-		// 3. business logic
-		// sql injection 방지 : preparedstatement
-		String sql = "SELECT SupplierID, SupplierName, ContactName, Address, City, PostalCode, Country, phone "
-				+ "FROM Suppliers";
-
-		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement(sql);) {
-//			stmt.setInt(1, Integer.parseInt(id)); // parameter1 : ? 위치, parameter2 : 값
-
-			try (ResultSet rs = stmt.executeQuery()) {
-				dao.getAllSuppliers(con);
-
-				while (rs.next()) {
-
-					int i = 1;
-					sup.setSupplierID(rs.getInt(i++));
-					sup.setSupplierName(rs.getString(i++));
-					sup.setContactName(rs.getString(i++));
-					sup.setAddress(rs.getString(i++));
-					sup.setCity(rs.getString(i++));
-					sup.setPostalCode(rs.getString(i++));
-					sup.setCountry(rs.getString(i++));
-					sup.setPhone(rs.getString(i++));
-					s.add(sup);
-				}
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		// 4. add attribute
-		request.setAttribute("supplierList", s);
 		
 
 		// 3. business logic
 
 		try (Connection con = ds.getConnection();) {
 			s = dao.getAllSuppliers(con);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
