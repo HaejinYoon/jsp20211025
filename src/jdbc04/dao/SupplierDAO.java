@@ -140,4 +140,35 @@ public class SupplierDAO {
 		return rowCount == 1;
 	}
 
+	public List<Supplier> getSupplierByID(Connection con, int id) {
+		List<Supplier> list = new ArrayList<>();
+		String sql = "SELECT SupplierID, SupplierName, ContactName,	Address, City, PostalCode, Country, Phone "
+				+ " FROM Suppliers WHERE SupplierID = ?";
+
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, id);
+
+			try (ResultSet rs = pstmt.executeQuery();) {
+				if (rs.next()) {
+					Supplier supp = new Supplier();
+					int i = 1;
+
+					supp.setSupplierID(rs.getInt(i++));
+					supp.setSupplierName(rs.getString(i++));
+					supp.setContactName(rs.getString(i++));
+					supp.setAddress(rs.getString(i++));
+					supp.setCity(rs.getString(i++));
+					supp.setPostalCode(rs.getString(i++));
+					supp.setCountry(rs.getString(i++));
+					supp.setPhone(rs.getString(i++));
+
+					list.add(supp);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

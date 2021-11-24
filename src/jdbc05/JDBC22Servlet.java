@@ -43,7 +43,7 @@ public class JDBC22Servlet extends HttpServlet {
 		ServletContext application = request.getServletContext();
 		DataSource ds = (DataSource) application.getAttribute("dbpool");
 		SupplierDAO dao = new SupplierDAO();
-		List<Supplier> s = null;
+		List<String> list = null;
 		boolean ok = false;
 //
 //		// 2. request 분석가공
@@ -75,15 +75,14 @@ public class JDBC22Servlet extends HttpServlet {
 		// 3. business logic
 
 		try (Connection con = ds.getConnection();) {
-			s = dao.getAllSuppliers(con);
-
+			list = dao.getCountryList(con);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		// 4. add attribute
-		request.setAttribute("supplierList", s);
-
+		
+		request.setAttribute("countryList", list);
 		// 5. forward
 		String path = "/WEB-INF/view/jdbc05/v22.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
@@ -150,7 +149,7 @@ public class JDBC22Servlet extends HttpServlet {
 				while (rs.next()) {
 
 					int i = 1;
-					sup.setSupplierID(rs.getString(i++));
+					sup.setSupplierID(rs.getInt(i++));
 					sup.setSupplierName(rs.getString(i++));
 					sup.setContactName(rs.getString(i++));
 					sup.setAddress(rs.getString(i++));

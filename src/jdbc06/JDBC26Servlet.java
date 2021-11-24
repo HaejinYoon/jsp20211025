@@ -2,6 +2,7 @@ package jdbc06;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -37,9 +38,10 @@ public class JDBC26Servlet extends HttpServlet {
 		DataSource ds = (DataSource) application.getAttribute("dbpool");
 		SupplierDAO dao = new SupplierDAO();
 		boolean ok = false;
-		
 		Supplier supplier = new Supplier();
+		List<String> list = null;
 		
+		int id = Integer.parseInt(request.getParameter("id"));
 //		supplier.setSupplierName("Samsung");
 //		supplier.setContactName("SamsungElec");
 //		supplier.setAddress("Dongtan");
@@ -50,10 +52,15 @@ public class JDBC26Servlet extends HttpServlet {
 //		supplier.setSupplierID(108);
 		
 		try(Connection con = ds.getConnection()) {
-			ok = dao.update(con, supplier); 
+			supplier = (Supplier) dao.getSupplierByID(con, id); 
+			list=dao.getCountryList(con);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		request.setAttribute("supp", supplier);
+		request.setAttribute("countryList", list);
 		
 		String path="/WEB-INF/view/jdbc06/v26.jsp";
 		request.getRequestDispatcher(path).forward(request, response);

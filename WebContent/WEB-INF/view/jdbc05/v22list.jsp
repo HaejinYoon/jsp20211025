@@ -45,7 +45,7 @@
 								<td>${supp.phone }</td>
 								<td>
 									<c:url value="/servlet08/remove" var="removeUrl">
-										<c:param name="id" value="${status.index }"></c:param>
+										<c:param name="id" value="${supp.supplierID }"></c:param>
 									</c:url>
 									<!-- button.btn.btn-danger>i.fas.fa-trash -->
 									<button class="btn btn-danger removeBtn" data-toggle="modal" data-target="#confirmModal1" data-link="${removeUrl }">
@@ -53,8 +53,8 @@
 									</button>
 								</td>
 								<td>
-									<c:url value="/jdbc05/s25" var="modifyUrl">
-										<c:param name="id" value="${status.index }"></c:param>
+									<c:url value="/jdbc06/s26" var="modifyUrl">
+										<c:param name="id" value="${supp.supplierID }"></c:param>
 									</c:url>
 									<!-- a.btn.btn-warning>i.fas.fa-pencil -->
 									<a href="${modifyUrl }" class="btn btn-warning">

@@ -47,10 +47,10 @@
 						<input type="text" class="form-control" id="input6" name="phone" value="${supp.phone}">
 					</div>
 					<div class="form-group">
-						<label for="select1"></label>
+						<label for="select1">Country</label>
 						<select name="country" id="select1" class="form-control">
 							<c:forEach items="${countryList }" var="country">
-								<option value="${country }">${supp.country }</option>
+								<option value="${country }">${country }</option>
 							</c:forEach>
 						</select>
 					</div>

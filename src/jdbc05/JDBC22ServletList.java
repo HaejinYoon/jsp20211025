@@ -150,7 +150,7 @@ public class JDBC22ServletList extends HttpServlet {
 				while (rs.next()) {
 
 					int i = 1;
-					sup.setSupplierID(rs.getString(i++));
+					sup.setSupplierID(rs.getInt(i++));
 					sup.setSupplierName(rs.getString(i++));
 					sup.setContactName(rs.getString(i++));
 					sup.setAddress(rs.getString(i++));
