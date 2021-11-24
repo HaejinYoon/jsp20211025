@@ -13,12 +13,10 @@ public class SupplierDAO {
 
 	public List<String> getCountryList(Connection con) {
 		List<String> list = new ArrayList<>();
-		
+
 		String sql = "SELECT DISTINCT Country FROM Suppliers ORDER BY Country";
-		
-		try (Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
-				){
+
+		try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
 			while (rs.next()) {
 				list.add(rs.getString(1));
 			}
@@ -30,12 +28,12 @@ public class SupplierDAO {
 
 	public List<Supplier> getSupplierListByCountry(Connection con, String country) {
 		List<Supplier> list = new ArrayList<>();
-		String sql = "SELECT SupplierID, SupplierName, ContactName,	Address, City, PostalCode, Country, Phone \"\r\n" + 
-				"					+\"FROM Suppliers WHERE Country = ?";
-		
-		try(PreparedStatement pstmt = con.prepareStatement(sql)) {
+		String sql = "SELECT SupplierID, SupplierName, ContactName,	Address, City, PostalCode, Country, Phone "
+				+ " FROM Suppliers WHERE Country = ?";
+
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, country);
-			
+
 			try (ResultSet rs = pstmt.executeQuery();) {
 				while (rs.next()) {
 					Supplier supp = new Supplier();
@@ -49,13 +47,64 @@ public class SupplierDAO {
 					supp.setPostalCode(rs.getString(i++));
 					supp.setCountry(rs.getString(i++));
 					supp.setPhone(rs.getString(i++));
-					
+
 					list.add(supp);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return list;
+	}
+
+	public boolean insert(Connection con, Supplier supp) {
+		String sql = "INSERT INTO Suppliers (SupplierName, ContactName, Address, City, PostalCode, Country, Phone) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+		int rowCount = 0;
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			// ? 채우기
+			pstmt.setString(1, supp.getSupplierName());
+			pstmt.setString(2, supp.getContactName());
+			pstmt.setString(3, supp.getAddress());
+			pstmt.setString(4, supp.getCity());
+			pstmt.setString(5, supp.getPostalCode());
+			pstmt.setString(6, supp.getCountry());
+			pstmt.setString(7, supp.getPhone());
+
+			rowCount = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowCount == 1;
+	}
+
+	public List<Supplier> getAllSuppliers(Connection con) {
+		List<Supplier> list = new ArrayList<>();
+		String sql = "SELECT SupplierID, SupplierName, ContactName, Address, City, PostalCode, Country, Phone FROM Suppliers";
+
+		try (Statement stmt = con.prepareStatement(sql)) {
+			try (ResultSet rs = stmt.executeQuery(sql);) {
+				while (rs.next()) {
+					Supplier supp = new Supplier();
+					int i = 1;
+
+					supp.setSupplierID(rs.getString(i++));
+					supp.setSupplierName(rs.getString(i++));
+					supp.setContactName(rs.getString(i++));
+					supp.setAddress(rs.getString(i++));
+					supp.setCity(rs.getString(i++));
+					supp.setPostalCode(rs.getString(i++));
+					supp.setCountry(rs.getString(i++));
+					supp.setPhone(rs.getString(i++));
+
+					list.add(supp);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return list;
 	}
 
