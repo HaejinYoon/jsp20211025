@@ -41,16 +41,18 @@ public class JDBC28Servletrm extends HttpServlet {
 		List<Supplier> s = new ArrayList<>();
 		request.setCharacterEncoding("utf-8");
 		boolean ok = false;
+		
 		// 2. 가공
 		String idStr = request.getParameter("id");
 		int supplierID = Integer.parseInt(idStr);
+		
 		// 3. business logic
 		try (Connection con = ds.getConnection()){
 			ok = dao.deleteById(con, supplierID);
 			s = dao.getAllSuppliers(con);
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		// 4. add attribute
