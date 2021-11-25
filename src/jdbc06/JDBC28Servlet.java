@@ -101,7 +101,7 @@ public class JDBC28Servlet extends HttpServlet {
 					ok = dao.update(con, supplier);
 					s = dao.getAllSuppliers(con);
 				} catch (Exception e) {
-					// TODO: handle exception
+					e.printStackTrace();
 				}
 				
 				// 4. add attribute

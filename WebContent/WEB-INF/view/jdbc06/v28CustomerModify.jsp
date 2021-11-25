@@ -11,53 +11,49 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/icon/css/all.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-<title>Supplier Modification</title>
+<title>Customer Modification</title>
 </head>
 <body>
 <div class="container">
 	<div class="row">
 		<div class="col">
-			<h1>Supplier Modification</h1>
+			<h1>Customer Modification</h1>
 			<!-- form>(.form-group>label[for=input$]+input.form-control#input$[name])*6 -->
 			<form action="" method="post">
-				<input type="hidden" name="supplierID"  value="${supplier.supplierID }">
+				<input type="hidden" name="customerID"  value="${customer.customerID }">
 				<div class="form-group">
-					<label for="input1">Supplier Name</label>
-					<input value="${supplier.supplierName } "  type="text" class="form-control" id="input1" name="supplierName">
+					<label for="input1">Customer Name</label>
+					<input value="${customer.customerName } "  type="text" class="form-control" id="input1" name="customerName">
 				</div>
 				<div class="form-group">
 					<label for="input2">Contact Name</label>
-					<input value="${supplier.contactName }" type="text" class="form-control" id="input2" name="contactName">
+					<input value="${customer.contactName }" type="text" class="form-control" id="input2" name="contactName">
 				</div>
 				<div class="form-group">
 					<label for="input3">Address</label>
-					<input value="${supplier.address }" type="text" class="form-control" id="input3" name="address">
+					<input value="${customer.address }" type="text" class="form-control" id="input3" name="address">
 				</div>
 				<div class="form-group">
 					<label for="input4">City</label>
-					<input value="${supplier.city }" type="text" class="form-control" id="input4" name="city">
+					<input value="${customer.city }" type="text" class="form-control" id="input4" name="city">
 				</div>
 				<div class="form-group">
 					<label for="input5">Postal Code</label>
-					<input value="${supplier.postalCode }" type="text" class="form-control" id="input5" name="postalCode">
-				</div>
-				<div class="form-group">
-					<label for="input6">Phone Number</label>
-					<input value="${supplier.phone }" type="text" class="form-control" id="input6" name="phone">
+					<input value="${customer.postalCode }" type="text" class="form-control" id="input5" name="postalCode">
 				</div>
 				<!-- .form-group>label[for=select1]+select#select1.form-control -->
 				<div class="form-group">
 					<label for="select1">Country</label>
 					<select name="country" id="select1" class="form-control">
 						<c:forEach items="${countryList }" var="country">
-							<option ${supplier.country eq country ? 'selected' : '' } value="${country }">${country }</option>
+							<option ${customer.country eq country ? 'selected' : '' } value="${country }">${country }</option>
 						</c:forEach>
 					</select>
 				</div>
 				
 				<!-- input:s.btn.btn-primary -->
 				<input type="submit" value="Modify" class="btn btn-primary">
-				<a href="${pageContext.request.contextPath }/jdbc05/s22list" class="btn btn-secondary">Cancel</a>
+				<a href="${pageContext.request.contextPath }/jdbc05/s22customerlist" class="btn btn-secondary">Cancel</a>
 			</form>
 		</div>
 	</div>

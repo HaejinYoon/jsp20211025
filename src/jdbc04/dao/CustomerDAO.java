@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jdbc02.bean.Customer;
+import jdbc02.bean.Supplier;
 
 public class CustomerDAO {
 
@@ -158,5 +159,32 @@ public class CustomerDAO {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public List<Customer> getAllCustomer(Connection con) {
+		List<Customer> list = new ArrayList<>();
+		String sql = "SELECT CustomerID, CustomerName, ContactName, Address, City, PostalCode, Country FROM Customers";
+
+		try (Statement stmt = con.prepareStatement(sql)) {
+			try (ResultSet rs = stmt.executeQuery(sql);) {
+				while (rs.next()) {
+					Customer cus = new Customer();
+					int i = 1;
+
+					cus.setCustomerID(rs.getInt(i++));
+					cus.setCustomerName(rs.getString(i++));
+					cus.setContactName(rs.getString(i++));
+					cus.setAddress(rs.getString(i++));
+					cus.setCity(rs.getString(i++));
+					cus.setPostalCode(rs.getString(i++));
+					cus.setCountry(rs.getString(i++));
+
+					list.add(cus);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
