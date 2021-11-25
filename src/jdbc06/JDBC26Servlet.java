@@ -39,19 +39,11 @@ public class JDBC26Servlet extends HttpServlet {
 		DataSource ds = (DataSource) application.getAttribute("dbpool");
 		SupplierDAO dao = new SupplierDAO();
 		boolean ok = false;
-//		Supplier supplier = new Supplier();
+		Supplier supplier = new Supplier();
 		List<String> list = null;
-		List<Supplier> supplier = new ArrayList<>();
+//		List<Supplier> supplier = new ArrayList<>();
+		
 		int id = Integer.parseInt(request.getParameter("id"));
-		System.out.println("s26 id : " + id);
-//		supplier.setSupplierName("Samsung");
-//		supplier.setContactName("SamsungElec");
-//		supplier.setAddress("Dongtan");
-//		supplier.setCity("Suwon");
-//		supplier.setPostalCode("239149");
-//		supplier.setCountry("Korea");
-//		supplier.setPhone("0312456352");
-//		supplier.setSupplierID(108);
 		
 		try(Connection con = ds.getConnection()) {
 			supplier = dao.getSupplierByID(con, id); 
@@ -60,7 +52,7 @@ public class JDBC26Servlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("s26 supplier list : " + supplier.toString());
+		
 		request.setAttribute("supplierList", supplier);
 		request.setAttribute("countryList", list);
 		

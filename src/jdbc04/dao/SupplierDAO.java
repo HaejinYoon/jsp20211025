@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import jdbc02.bean.Customer;
 import jdbc02.bean.Supplier;
 
 public class SupplierDAO {
@@ -104,25 +105,15 @@ public class SupplierDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("all list : " + list.toString());
 		return list;
 	}
 
 	public boolean update(Connection con, Supplier supplier) {
-		String sql = "UPDATE Suppliers " + 
-				"SET " + 
-				"	SupplierName=?," + 
-				"	ContactName=?," + 
-				"	Address=?," + 
-				"	City=?," + 
-				"	PostalCode=?," + 
-				"	Country=?," +
-				"	Phone=? " +
-				" WHERE " + 
-				"	SupplierID = ?";
-		
+		String sql = "UPDATE Suppliers " + "SET " + "	SupplierName=?," + "	ContactName=?," + "	Address=?,"
+				+ "	City=?," + "	PostalCode=?," + "	Country=?," + "	Phone=? " + " WHERE " + "	SupplierID = ?";
+
 		int rowCount = 0;
-		try (PreparedStatement pstmt = con.prepareStatement(sql)){
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			int i = 1;
 			pstmt.setString(i++, supplier.getSupplierName());
 			pstmt.setString(i++, supplier.getContactName());
@@ -133,27 +124,25 @@ public class SupplierDAO {
 			pstmt.setString(i++, supplier.getPhone());
 			pstmt.setInt(i++, supplier.getSupplierID());
 			rowCount = pstmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return rowCount == 1;
 	}
 
-	public List<Supplier> getSupplierByID(Connection con, int id) {
-		List<Supplier> list = new ArrayList<>();
+	public Supplier getSupplierByID(Connection con, int id) {
 		String sql = "SELECT SupplierID, SupplierName, ContactName,	Address, City, PostalCode, Country, Phone "
 				+ " FROM Suppliers WHERE SupplierID = ?";
-		System.out.println("DAO id : "+id);
+		Supplier supp = new Supplier();
 
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, id);
 			try (ResultSet rs = pstmt.executeQuery();) {
-				while (rs.next()) {
-					Supplier supp = new Supplier();
-					int i = 1;
-					
-					supp.setSupplierID(rs.getInt(i++));
+				if (rs.next()) {
+					int i = 2;
+
+					supp.setSupplierID(id);
 					supp.setSupplierName(rs.getString(i++));
 					supp.setContactName(rs.getString(i++));
 					supp.setAddress(rs.getString(i++));
@@ -162,14 +151,62 @@ public class SupplierDAO {
 					supp.setCountry(rs.getString(i++));
 					supp.setPhone(rs.getString(i++));
 
-					list.add(supp);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("DAO list : " + list.toString());
-		return list;
+		return supp;
+	}
+
+	public Supplier selectById(Connection con, int supplierID) {
+		String sql = "SELECT SupplierName, ContactName, Address, City, " + "  PostalCode, Country, Phone"
+				+ " FROM Suppliers " + " WHERE SupplierID = ?";
+
+		Supplier supplier = new Supplier();
+
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, supplierID);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					String supplierName = rs.getNString("supplierName");
+					String contactName = rs.getString("contactName");
+					String address = rs.getString("Address");
+					String city = rs.getString("City");
+					String postalCode = rs.getString("PostalCode");
+					String country = rs.getString("Country");
+					String phone = rs.getString("phone");
+
+					supplier.setSupplierID(supplierID);
+					supplier.setSupplierName(supplierName);
+					supplier.setContactName(contactName);
+					supplier.setAddress(address);
+					supplier.setCity(city);
+					supplier.setPostalCode(postalCode);
+					supplier.setCountry(country);
+					supplier.setPhone(phone);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return supplier;
+	}
+
+	public boolean deleteById(Connection con, int supplierID) {
+		String sql = "DELETE FROM Suppliers WHERE SupplierID = ?";
+
+
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, supplierID);
+			int count = pstmt.executeUpdate();
+			System.out.println("Delete Success");
+			return count == 1;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

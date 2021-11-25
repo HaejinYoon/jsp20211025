@@ -45,32 +45,10 @@ public class JDBC22ServletList extends HttpServlet {
 		SupplierDAO dao = new SupplierDAO();
 		List<Supplier> s = null;
 		boolean ok = false;
-//
-//		// 2. request 분석가공
-//		Supplier supp = new Supplier();
-//		supp.setSupplierName("General");
-//		supp.setContactName("AirForce");
-//		supp.setAddress("Gyeryoung");
-//		supp.setCity("Daejoen");
-//		supp.setPostalCode("123456");
-//		supp.setCountry("Korea");
-//		supp.setPhone("+82422998384");
-//		
-//		// 3. business 로직
-//		// dao.insert("kim ....."); XXXXX
-//		try (Connection con = ds.getConnection()) {
-//			dao.insert(con, supp);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		// 4. add Attribute
-//
-//		// 5. forward/redirect
+
 		// 0. 사전작업
 
-
 		// 2. request 분석/가공
-//		String id = request.getParameter("customerID");
 
 		// 3. business logic
 

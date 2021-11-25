@@ -45,33 +45,9 @@ public class JDBC22Servlet extends HttpServlet {
 		SupplierDAO dao = new SupplierDAO();
 		List<String> list = null;
 		boolean ok = false;
-//
-//		// 2. request 분석가공
-//		Supplier supp = new Supplier();
-//		supp.setSupplierName("General");
-//		supp.setContactName("AirForce");
-//		supp.setAddress("Gyeryoung");
-//		supp.setCity("Daejoen");
-//		supp.setPostalCode("123456");
-//		supp.setCountry("Korea");
-//		supp.setPhone("+82422998384");
-//		
-//		// 3. business 로직
-//		// dao.insert("kim ....."); XXXXX
-//		try (Connection con = ds.getConnection()) {
-//			dao.insert(con, supp);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		// 4. add Attribute
-//
-//		// 5. forward/redirect
+
 		// 0. 사전작업
-
-
 		// 2. request 분석/가공
-//		String id = request.getParameter("customerID");
-
 		// 3. business logic
 
 		try (Connection con = ds.getConnection();) {
@@ -79,9 +55,7 @@ public class JDBC22Servlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		// 4. add attribute
-		
+		// 4. add attribute		
 		request.setAttribute("countryList", list);
 		// 5. forward
 		String path = "/WEB-INF/view/jdbc05/v22.jsp";
@@ -98,6 +72,7 @@ public class JDBC22Servlet extends HttpServlet {
 		ServletContext application = request.getServletContext();
 		DataSource ds = (DataSource) application.getAttribute("dbpool");
 		SupplierDAO dao = new SupplierDAO();
+		request.setCharacterEncoding("utf-8");
 		boolean ok = false;
 
 		// 2. request 분석가공
@@ -130,11 +105,7 @@ public class JDBC22Servlet extends HttpServlet {
 
 		// 0. 사전작업
 		List<Supplier> s = new ArrayList<>();
-
-		
-
 		// 3. business logic
-
 		try (Connection con = ds.getConnection();) {
 			s = dao.getAllSuppliers(con);
 		} catch (Exception e) {
