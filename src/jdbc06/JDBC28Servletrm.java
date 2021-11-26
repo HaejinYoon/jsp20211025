@@ -38,7 +38,6 @@ public class JDBC28Servletrm extends HttpServlet {
 		ServletContext application = request.getServletContext();
 		DataSource ds = (DataSource) application.getAttribute("dbpool");
 		SupplierDAO dao = new SupplierDAO();
-		List<Supplier> s = new ArrayList<>();
 		request.setCharacterEncoding("utf-8");
 		boolean ok = false;
 		
@@ -49,17 +48,14 @@ public class JDBC28Servletrm extends HttpServlet {
 		// 3. business logic
 		try (Connection con = ds.getConnection()){
 			ok = dao.deleteById(con, supplierID);
-			s = dao.getAllSuppliers(con);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		// 4. add attribute
-		request.setAttribute("supplierList", s);
 		
 		// 5. forward
-		String path="/WEB-INF/view/jdbc05/v22list.jsp";
+		String path="/jdbc05/s22list";
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
@@ -67,7 +63,7 @@ public class JDBC28Servletrm extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
 	}
 
 }

@@ -17,7 +17,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<form method="post">
+				<form action="" method="post">
 					<h1>Input Supplier's Information</h1>
 					<hr>
 					<div class="form-group">

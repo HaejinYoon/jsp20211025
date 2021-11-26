@@ -14,10 +14,12 @@
 <title>v38</title>
 </head>
 <body>
-<h1>Personal Information</h1>
+<hr>
 <div class="container">
 	<div class="row">
 		<div class="col">
+			<a href="${pageContext.request.contextPath }/jdbc08/s37" class="btn btn-secondary fixed-top">← Back to Add Form</a>
+			<h1>Personal Information</h1> <br>
 			<table class="table">
 				<thead>
 				<tr>

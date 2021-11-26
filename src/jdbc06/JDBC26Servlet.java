@@ -85,18 +85,7 @@ public class JDBC26Servlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		List<Supplier> s = new ArrayList<>();
-		try (Connection con = ds.getConnection();) {
-			s = dao.getAllSuppliers(con);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		// 4. add attribute
-		request.setAttribute("supplierList", s);
-		
-		String path="/WEB-INF/view/jdbc05/v22list.jsp";
+		String path="/jdbc05/s22list";
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 

@@ -70,6 +70,27 @@ public class JDBC22ServletCustomerlist extends HttpServlet {
 			 */
 			protected void doPost(HttpServletRequest request, HttpServletResponse response)
 					throws ServletException, IOException {
+				ServletContext application = request.getServletContext();
+				DataSource ds = (DataSource) application.getAttribute("dbpool");
+				CustomerDAO dao = new CustomerDAO();
+				List<Customer> s = null;
+				boolean ok = false;
+
+				// 0. 사전작업
+
+				// 2. request 분석/가공
+
+				// 3. business logic
+
+				try (Connection con = ds.getConnection();) {
+					s = dao.getAllCustomer(con);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				// 4. add attribute
+				request.setAttribute("customerList", s);
 				
 				String path = "/WEB-INF/view/jdbc05/v22customerlist.jsp";
 				request.getRequestDispatcher(path).forward(request, response);

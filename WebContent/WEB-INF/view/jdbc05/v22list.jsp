@@ -9,14 +9,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/icon/css/all.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
 
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: darkred;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+  width : 90px;
+  
+}
+
+#myBtn:hover {
+  background-color: red;
+}
+</style>
 <title>Suppliers List</title>
 </head>
 <body>
 	<div class="container">
-		<a href="${pageContext.request.contextPath }/jdbc05/s22" class="btn btn-secondary">← Back to Add Form</a>
 		<div class="row">
 			<div class="col">
+			<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-chevron-up"></i> Top</button>
+				<a href="${pageContext.request.contextPath }/jdbc05/s22" class="btn btn-secondary fixed-top">← Back to Add Form</a> <hr>
+				<h1>Supplier List</h1>
 				<table class="table">
 					<thead>
 						<tr>
@@ -95,6 +124,25 @@
 				$("#removeModalBtn1").attr("href", link);
 			});
 		});
+		//Get the button
+		var mybutton = document.getElementById("myBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+
+		function scrollFunction() {
+		  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+		    mybutton.style.display = "block";
+		  } else {
+		    mybutton.style.display = "none";
+		  }
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function topFunction() {
+		  document.body.scrollTop = 0;
+		  document.documentElement.scrollTop = 0;
+		}
 	</script>
 </body>
 </html>

@@ -54,7 +54,6 @@ public class JDBC22ServletList extends HttpServlet {
 
 		try (Connection con = ds.getConnection();) {
 			s = dao.getAllSuppliers(con);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -73,7 +72,24 @@ public class JDBC22ServletList extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		ServletContext application = request.getServletContext();
+		DataSource ds = (DataSource) application.getAttribute("dbpool");
+		SupplierDAO dao = new SupplierDAO();
+		List<Supplier> supplierList = new ArrayList<>();
+		request.setCharacterEncoding("utf-8");
+		boolean ok = false;
+
+		// 2. request 분석가공
+
+		// 3. business 로직
+		// dao.insert("kim ....."); XXXXX
+		try (Connection con = ds.getConnection()) {
+			supplierList=dao.getAllSuppliers(con);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// 4. add Attribute
+		request.setAttribute("supplierList", supplierList);
 		String path = "/WEB-INF/view/jdbc05/v22list.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 	}

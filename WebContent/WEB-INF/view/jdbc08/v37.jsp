@@ -14,18 +14,32 @@
 <title>v37</title>
 </head>
 <body>
-<h1>mytable11 insert</h1>
 <!-- form>input*8 -->
+<div class="container">
+		<div class="row">
+			<div class="col">
+<h1>mytable11 insert</h1>
 <form action="" method="post">
-	<input type="text" value="Haejin" name="name"> <br>
-	<input type="number" step="1" name="age"> <br>
-	<input type="date"  name="birth"> <br>
+<div class="form-group">
+						<label for="input1">Name</label>
+	<input type="text"  class="form-control" value="Haejin" name="name">
+	</div>
+	<div class="form-group">
+						<label for="input1">Age</label>
+	<input type="number" class="form-control"  step="1" name="age"></div>
+	<div class="form-group">
+						<label for="input1">Birth Date</label>
+	<input type="date"  class="form-control"  name="birth"> </div>
 	<!-- <input type="text" maxlength="3" name="col4"> <br>
 	<input type="text" name="col5"> <br>
 	<input type="date" name="col6"> <br>
 	<input type="datetime-local" name="col7"> <br> -->
-	<input type="submit" value="submit">
+	<input type="submit" value="Submit" class="btn btn-primary"> 
+	<a href="${pageContext.request.contextPath }/jdbc08/s38"  class="btn btn-secondary">Show List</a> <br>
 </form>
+</div>
+		</div>
+	</div>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

@@ -39,17 +39,15 @@ public class JDBC22Servlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// get Country List from DB
 		// 0. 사전작업
 		ServletContext application = request.getServletContext();
 		DataSource ds = (DataSource) application.getAttribute("dbpool");
 		SupplierDAO dao = new SupplierDAO();
 		List<String> list = null;
 		boolean ok = false;
-
-		// 0. 사전작업
 		// 2. request 분석/가공
 		// 3. business logic
-
 		try (Connection con = ds.getConnection();) {
 			list = dao.getCountryList(con);
 		} catch (Exception e) {
@@ -68,6 +66,7 @@ public class JDBC22Servlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Insert Supplier Information to DB
 		// 0. 사전작업
 		ServletContext application = request.getServletContext();
 		DataSource ds = (DataSource) application.getAttribute("dbpool");
@@ -102,21 +101,8 @@ public class JDBC22Servlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		// 4. add Attribute
-
-		// 0. 사전작업
-		List<Supplier> s = new ArrayList<>();
-		// 3. business logic
-		try (Connection con = ds.getConnection();) {
-			s = dao.getAllSuppliers(con);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		// 4. add attribute
-		request.setAttribute("supplierList", s);
-
 		// 5. forward/redirect
-		String path = "/WEB-INF/view/jdbc05/v22list.jsp";
+		String path = "/jdbc05/s22list";
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 

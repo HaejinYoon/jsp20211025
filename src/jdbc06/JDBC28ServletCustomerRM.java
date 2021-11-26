@@ -38,7 +38,6 @@ public class JDBC28ServletCustomerRM extends HttpServlet {
 		ServletContext application = request.getServletContext();
 		DataSource ds = (DataSource) application.getAttribute("dbpool");
 		CustomerDAO dao = new CustomerDAO();
-		List<Customer> s = new ArrayList<>();
 		request.setCharacterEncoding("utf-8");
 		boolean ok = false;
 		
@@ -49,17 +48,12 @@ public class JDBC28ServletCustomerRM extends HttpServlet {
 		// 3. business logic
 		try (Connection con = ds.getConnection()){
 			ok = dao.deleteById(con, customerID);
-			s = dao.getAllCustomer(con);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		// 4. add attribute
-		request.setAttribute("customerList", s);
-		
 		// 5. forward
-		String path="/WEB-INF/view/jdbc05/v22customerlist.jsp";
+		String path="/jdbc05/s22customerlist";
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 

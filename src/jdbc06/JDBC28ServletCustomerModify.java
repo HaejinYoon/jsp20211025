@@ -37,7 +37,7 @@ public class JDBC28ServletCustomerModify extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext application = request.getServletContext();
 		DataSource ds = (DataSource) application.getAttribute("dbpool");
-		Customer customer = null;
+		Customer customer = new Customer();;
 		CustomerDAO dao = new CustomerDAO();
 		List<String> countryList = null;
 		request.setCharacterEncoding("utf-8");
@@ -72,7 +72,6 @@ public class JDBC28ServletCustomerModify extends HttpServlet {
 		ServletContext application = request.getServletContext();
 		DataSource ds = (DataSource) application.getAttribute("dbpool");
 		CustomerDAO dao = new CustomerDAO();
-		List<Customer> s = new ArrayList<>();
 		request.setCharacterEncoding("utf-8");
 		boolean ok = false;
 		// 2. 가공
@@ -97,16 +96,12 @@ public class JDBC28ServletCustomerModify extends HttpServlet {
 		// 3. business logic
 		try (Connection con = ds.getConnection()){
 			ok = dao.update(con, customer);
-			s = dao.getAllCustomer(con);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		// 4. add attribute
-		request.setAttribute("customerList", s);
-		
 		// 5. forward
-		String path="/WEB-INF/view/jdbc05/v22customerlist.jsp";
+		String path="/jdbc05/s22customerlist";
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
