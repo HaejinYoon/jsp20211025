@@ -1,3 +1,3 @@
 use test;
 
-DROP TABLE mytable1;CategoriesOrderDetails
+DROP TABLE mytable1;
