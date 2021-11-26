@@ -50,7 +50,7 @@
 					</div>
 					<div class="form-group">
 						<input type="submit" value="Add Customer" class="btn btn-primary">
-						<a href="${pageContext.request.contextPath }/jdbc05/s22customerlist" class="btn btn-secondary">Show Customer List</a>
+						<a href="${pageContext.request.contextPath }/jdbc05/s22customerlist" class="btn btn-secondary"> <i class="fas fa-list"></i> Show Customer List</a>
 					</div>
 				</form>
 			</div>

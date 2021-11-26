@@ -54,7 +54,7 @@
 					</div>
 					<div class="form-group">
 						<input type="submit" value="Add Supplier" class="btn btn-primary">
-						<a href="${pageContext.request.contextPath }/jdbc05/s22list" class="btn btn-secondary">Show Suppliers List</a>
+						<a href="${pageContext.request.contextPath }/jdbc05/s22list" class="btn btn-secondary"> <i class="fas fa-list"></i> Show Suppliers List</a>
 					</div>
 				</form>
 			</div>

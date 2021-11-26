@@ -44,7 +44,7 @@ body {
 		<div class="row">
 			<div class="col">
 			<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-chevron-up"></i> Top</button>
-				<a href="${pageContext.request.contextPath }/jdbc05/s22customer" class="btn btn-secondary fixed-top">← Back to Add Form</a>
+				<a href="${pageContext.request.contextPath }/jdbc05/s22customer" class="btn btn-dark sticky-top" style="width:1110px"><i class="fas fa-chevron-left"></i> Back to Add Form</a>
 				<hr>
 				<h1>Customer List</h1>
 				<table class="table">
