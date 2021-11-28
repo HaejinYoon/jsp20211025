@@ -23,7 +23,7 @@ public class Bean11 {
 	}
 	public void setInsertDate(LocalDateTime insertDate) {
 		LocalDateTime now = insertDate;
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		this.insertDate = now.format(dateTimeFormatter);
 	}
 	public String getModifyDate() {
@@ -31,7 +31,7 @@ public class Bean11 {
 	}
 	public void setModifyDate(LocalDateTime modifyDate) {
 		LocalDateTime now = modifyDate;
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		this.modifyDate = now.format(dateTimeFormatter);
 	}
 	
