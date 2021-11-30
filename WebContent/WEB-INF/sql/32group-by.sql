@@ -47,3 +47,25 @@ WHERE
             FROM
                 Customers
             GROUP BY Country) A);
+            
+-- 연습4 : 고객별 주문 수 조회
+-- table : Customers, Orders
+SELECT CustomerID, count(CustomerID) FROM Orders GROUP BY CustomerID;
+
+-- 고객이름도 조회
+SELECT  o.CustomerID, c.CustomerName, count(o.CustomerID) FROM Orders o JOIN Customers c ON o.CustomerID = c.CustomerID
+GROUP BY CustomerID;
+
+-- 연습 5 : 고객별 총 주문한 수량 (CustomerID, 총 주문수량)
+SELECT 
+    c.CustomerID,
+    c.CustomerName,
+    SUM(od.Quantity) '총 주문 수량'
+FROM
+    OrderDetails od
+        JOIN
+    Orders o ON od.OrderID = o.OrderID
+        JOIN
+    Customers c ON c.CustomerID = o.CustomerID
+GROUP BY CustomerID;
+
