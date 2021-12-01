@@ -35,7 +35,7 @@ GROUP BY p.ProductID
 -- 날짜별 매출액
 SELECT 
 --    o.OrderDate, p.ProductID, sum(od.Quantity * p.Price) '날짜별 매출액'
-*
+o.OrderDate, sum(od.Quantity*p.Price) 'DailySales'
 FROM
     OrderDetails od
         JOIN
@@ -43,5 +43,5 @@ FROM
         JOIN
     Orders o ON o.OrderID = od.OrderID
 GROUP BY o.OrderDate
-ORDER BY 1
+ORDER BY o.OrderDate
 ;

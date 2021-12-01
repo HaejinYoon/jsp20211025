@@ -23,17 +23,32 @@
 	</div>
 	<!-- .row>.col-4>form>.input-group.mb-3>input.form-control+.input-group-append>button.btn.btn-outline-primary{Search} -->
 	<div class="row">
-		<div class="col-4">
-			<form action="">
-				<div class="input-group mb-3">
-					<input type="text" class="form-control" name="keyword" placeholder="Insert search word">
-					<div class="input-group-append">
-						<button class="btn btn-outline-primary">Search</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+      <div class="col">
+        <form action="">
+          <div class="col">
+            <!-- .form-group.row>label[for=select1].col-2.col-form-label+.col-10>select.form-control#select1 -->
+            <div class="form-group row">
+              <label for="select1" class="col-2 col-form-label">Birth Year</label>
+              <div class="col-4">
+                <select name="year" id="select1" class="form-control">
+                  <c:forEach begin="1928" end="1969" var="year">
+                    <option value="${year }">${year }</option>
+                  </c:forEach>
+                </select>
+              </div>
+              <div class="col-6">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" name="keyword" placeholder="Inpue search text">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary">Search</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
 	
 	<!-- .row>.col.>table.table>thead>tr>th*5^^tbody -->
 	<div class="row">
