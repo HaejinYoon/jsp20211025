@@ -8,3 +8,16 @@ ALTER TABLE mytable11 ADD COLUMN ;
     delete from mytable11 where id>= 7;
     
 DROP TABLE mytable11;
+
+SELECT
+			p.ProductName, c.CategoryName
+		FROM
+			Products p
+		JOIN
+			Categories c 
+		ON
+			p.CategoryID = c.CategoryID
+		WHERE
+			c.CategoryName = 'Beverages' AND p.Price <10;
+;
+SELECT * FROM Categories;
